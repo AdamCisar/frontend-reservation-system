@@ -16,5 +16,13 @@
       "time": "12:30 PM"
     }
   ],
-  "user": []
+  "user": [
+    {
+      "firstName": "a",
+      "lastName": "a",
+      "email": "a@a",
+      "password": "a",
+      "id": 1
+    }
+  ]
 }

@@ -1,21 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { login } from "../service/UserService";
+
 function Login() {
+
+  const navigate = useNavigate();
+
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const user = { email, password };
+    login(user);
+   navigate("/");
+  };
+
     return (
       <div className="register-form">
-        <form>
-            <h3>Sign Up</h3>
-            <div className="mb-3">
-              <label>First name</label>
-              <input
-                type="text"
-                className="form-control"
-                placeholder="First name"
-              />
-            </div>
-            <div className="mb-3">
-              <label>Last name</label>
-              <input type="text" className="form-control" placeholder="Last name" />
-            </div>
+        <form onSubmit = {handleSubmit}>
+            <h3>Login</h3>
             <div className="mb-3">
               <label>Email address</label>
               <input
@@ -34,11 +38,11 @@ function Login() {
             </div>
             <div className="d-grid">
               <button type="submit" className="btn btn-primary">
-                Sign Up
+                Login
               </button>
             </div>
             <p className="forgot-password text-right">
-              Already registered <a href="/sign-in">sign in?</a>
+              Don't have an account <Link to="/signup">sign up?</Link>
             </p>
           </form>
         </div>

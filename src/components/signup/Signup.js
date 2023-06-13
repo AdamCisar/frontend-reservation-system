@@ -1,8 +1,12 @@
 import React, { useState } from 'react';
 import './Signup.css';
+import { signUp } from '../service/UserService';
+import { Link, useNavigate } from 'react-router-dom';
 
 function Signup() {
 
+  const navigate = useNavigate();
+  
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
@@ -11,6 +15,8 @@ function Signup() {
   const handleSubmit = (e) => {
     e.preventDefault();
     const user = { firstName, lastName, email, password };
+    signUp(user);
+    navigate("/");
   };
 
   return (
@@ -67,7 +73,7 @@ function Signup() {
             </button>
           </div>
           <p className="forgot-password text-right">
-            Already registered <a href="/sign-in">sign in?</a>
+            Already registered <Link to="/login">sign in?</Link>
           </p>
         </form>
       </div>

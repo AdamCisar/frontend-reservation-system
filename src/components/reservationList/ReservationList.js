@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import './ReservationList.css'; 
 import { getAllReservation, deleteReservation } from "../service/ReservationService";
 
-
 const ReservationList = () => {
   const {data, isPending} = getAllReservation();
   const [reservations, setReservations] = useState([]);
@@ -16,6 +15,7 @@ const ReservationList = () => {
     const updatedReservations = reservations.filter((reservation) => reservation.id !== id);
     setReservations(updatedReservations);
   }
+  
     return ( 
     <div className = "reservation-container">
       {isPending && <div>Loading...</div>}
