@@ -26,6 +26,7 @@ function Login() {
                 type="email"
                 className="form-control"
                 placeholder="Enter email"
+                onChange={e => setEmail(e.target.value)}
               />
             </div>
             <div className="mb-3">
@@ -34,6 +35,7 @@ function Login() {
                 type="password"
                 className="form-control"
                 placeholder="Enter password"
+                onChange={e => setPassword(e.target.value)}
               />
             </div>
             <div className="d-grid">

@@ -1,21 +1,20 @@
 import React, { useEffect, useState } from "react";
 import './ReservationList.css'; 
 import { getAllReservation, deleteReservation } from "../service/ReservationService";
+import Admin from "../adminActions/Admin";
+import User from "../userActions/User";
+import jwt_decode from 'jwt-decode';
+
 
 const ReservationList = () => {
   const {data, isPending} = getAllReservation();
   const [reservations, setReservations] = useState([]);
-
+  const role = jwt_decode(localStorage.getItem("token")).roles;
+  
   useEffect(() => {
     setReservations(data);
   }, [data]);
 
-  const handleDelete = (id) => {
-    deleteReservation(id);
-    const updatedReservations = reservations.filter((reservation) => reservation.id !== id);
-    setReservations(updatedReservations);
-  }
-  
     return ( 
     <div className = "reservation-container">
       {isPending && <div>Loading...</div>}
@@ -33,8 +32,9 @@ const ReservationList = () => {
                   <td>{data.date}</td>
                   <td>{data.time}</td>
                   <td>
-                  <button type="button" className="btn btn-primary">edit</button>
-                  <button onClick={() => handleDelete(data.id)} type="button" className="btn btn-danger">delete</button>
+                  {
+                    role === "ROLE_ADMIN" ? <Admin/> : <User/>
+                  }
                   </td>
                 </tr>
           ))}
