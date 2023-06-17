@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import jwt_decode from 'jwt-decode';
 
 export const getAllReservation = () => {
     const [data, setData] = useState(null);
@@ -32,7 +33,31 @@ export const getAllReservation = () => {
 }
 
 export const deleteReservation = (id) => {
-    fetch("http://localhost:8080/reservation-list/" + id,{
-        method: 'DELETE'
-    })
+    const token = localStorage.getItem("token");
+    fetch("http://localhost:8080/api/reservation/admin/"+id, {
+            method: "DELETE",
+            headers: {
+                "Authorization": `Bearer ${token}`,
+                "Content-Type": 'application/json'
+            }
+            })
+            .catch(err => {
+                console.log(err.message);
+            })
+}
+
+export const assignToReservation = (reservationId) => {
+    const token = localStorage.getItem("token");
+    const userId = jwt_decode(token).id;
+
+    fetch(`http://localhost:8080/api/reservation/${reservationId}/update-user/${userId}`, {
+            method: "PATCH",
+            headers: {
+                "Authorization": `Bearer ${token}`,
+                "Content-Type": 'application/json'
+            }
+            })
+            .catch(err => {
+                console.log(err.message);
+            })
 }

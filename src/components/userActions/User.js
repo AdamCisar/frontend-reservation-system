@@ -1,9 +1,18 @@
 import React from "react";
+import { assignToReservation } from "../service/ReservationService";
 
-const User = () => {                  
+const User = (props) => {                  
+
+    const { id , reservations, setReservations } = props;
+
+    const handleAssign = (id) => {
+        assignToReservation(id);
+        const updatedReservations = reservations.filter((reservation) => reservation.id !== id);
+        setReservations(updatedReservations);
+    }
 
     return (
-        <button type="button" className="btn btn-success">assign</button>
+        <button onClick={() => handleAssign(id)} type="button" className="btn btn-success">assign</button>
     )
     
 }

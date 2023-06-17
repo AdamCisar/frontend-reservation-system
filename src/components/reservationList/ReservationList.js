@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import './ReservationList.css'; 
-import { getAllReservation, deleteReservation } from "../service/ReservationService";
+import { getAllReservation } from "../service/ReservationService";
 import Admin from "../adminActions/Admin";
 import User from "../userActions/User";
 import jwt_decode from 'jwt-decode';
@@ -14,7 +14,11 @@ const ReservationList = () => {
   useEffect(() => {
     setReservations(data);
   }, [data]);
-
+  
+  const formatDate = (dateString) => {
+    const options = { year: "numeric", month: "long", day: "numeric"}
+    return new Date(dateString).toLocaleDateString(undefined, options)
+  }
     return ( 
     <div className = "reservation-container">
       {isPending && <div>Loading...</div>}
@@ -23,17 +27,18 @@ const ReservationList = () => {
           <tr>
             <th scope="col">Date</th>
             <th scope="col">Time</th>
+            <th scope="col"></th>
           </tr>
         </thead>
         <tbody>
         {reservations && reservations.map((data, index) => (
-          
                 <tr key={index}>
-                  <td>{data.date}</td>
+                  <td>{formatDate(data.date)}</td>
                   <td>{data.time}</td>
                   <td>
                   {
-                    role === "ROLE_ADMIN" ? <Admin/> : <User/>
+                    role.includes("ROLE_ADMIN") ? <Admin id={data.id} reservations={reservations} setReservations={setReservations}/> 
+                    : <User id={data.id} reservations={reservations} setReservations={setReservations}/>
                   }
                   </td>
                 </tr>
