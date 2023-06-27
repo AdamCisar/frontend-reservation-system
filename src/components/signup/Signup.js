@@ -68,12 +68,12 @@ function Signup() {
             />
           </div>
           <div className="d-grid">
-            <button type="submit" className="btn btn-primary">
+            <button type="submit" className="btn btn-dark">
               Sign Up
             </button>
           </div>
-          <p className="forgot-password text-right">
-            Already registered <Link to="/login">sign in?</Link>
+          <p className="badge badge-light">
+            Already registered <Link className='signup' to="/login">sign in?</Link>
           </p>
         </form>
       </div>

@@ -4,6 +4,8 @@ import jwt_decode from 'jwt-decode';
 export const getAllReservation = () => {
     const [data, setData] = useState(null);
     const [isPending, setIsPending] = useState(true);
+    const [err, setErr] = useState();
+    
     const token = localStorage.getItem("token");
     
     useEffect(() => {
@@ -25,10 +27,11 @@ export const getAllReservation = () => {
                 setIsPending(false);
             })
             .catch(err => {
-                console.log(err.message);
+                setErr(err.message);
+                setIsPending(false);
             })
     }, [])
-    return {data, isPending};
+    return {data, isPending, err};
     
 }
 

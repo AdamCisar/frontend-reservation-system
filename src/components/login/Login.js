@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import './Login.css'
 import { Link, useNavigate } from "react-router-dom";
 import { login } from "../service/UserService";
 
@@ -39,12 +40,12 @@ function Login() {
               />
             </div>
             <div className="d-grid">
-              <button type="submit" className="btn btn-primary">
+              <button type="submit" className="btn btn-dark">
                 Login
               </button>
             </div>
-            <p className="forgot-password text-right">
-              Don't have an account <Link to="/signup">sign up?</Link>
+            <p className="badge badge-light">
+              Don't have an account <Link className="login" to="/signup">sign up?</Link>
             </p>
           </form>
         </div>

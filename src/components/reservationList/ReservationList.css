@@ -1,0 +1,13 @@
+tr {
+    text-align: center;
+}
+
+table {
+    border-radius: 30px;
+    max-width: 60%;
+    margin: auto;
+    
+}
+.reservation-container{
+    margin-top: 100px;
+}

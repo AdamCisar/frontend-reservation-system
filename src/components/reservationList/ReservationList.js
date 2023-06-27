@@ -7,7 +7,7 @@ import jwt_decode from 'jwt-decode';
 
 
 const ReservationList = () => {
-  const {data, isPending} = getAllReservation();
+  const {data, isPending, err} = getAllReservation();
   const [reservations, setReservations] = useState([]);
   const role = jwt_decode(localStorage.getItem("token")).roles;
   
@@ -21,8 +21,7 @@ const ReservationList = () => {
   }
     return ( 
     <div className = "reservation-container">
-      {isPending && <div>Loading...</div>}
-      <table className ="table table-dark">
+      <table className ="table table-dark table-hover">
         <thead>
           <tr>
             <th scope="col">Date</th>
@@ -45,6 +44,8 @@ const ReservationList = () => {
           ))}
           </tbody>
       </table>
+      {isPending && <div>Loading...</div>}
+      {err && <div><p>{err}</p></div>}
   </div>
   );
 }
