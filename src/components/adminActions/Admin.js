@@ -12,8 +12,8 @@ const Admin = (props) => {
 
     return (
     <div>
-        <button type="button" className="btn btn-primary">edit</button>
-        <button onClick={() => handleDelete(id)} type="button" className="btn btn-danger">delete</button>
+        <button type="button" className="btn btn-primary">Edit</button>
+        <button onClick={() => handleDelete(id)} type="button" className="btn btn-danger">Delete</button>
     </div>
     )
 }

@@ -5,7 +5,6 @@ import Admin from "../adminActions/Admin";
 import User from "../userActions/User";
 import jwt_decode from 'jwt-decode';
 
-
 const ReservationList = () => {
   const {data, isPending, err} = getAllReservation();
   const [reservations, setReservations] = useState([]);
@@ -14,6 +13,10 @@ const ReservationList = () => {
   useEffect(() => {
     setReservations(data);
   }, [data]);
+
+  const addReservation = (data) =>{
+    setReservations(data);
+  }
   
   const formatDate = (dateString) => {
     const options = { year: "numeric", month: "long", day: "numeric"}
@@ -49,5 +52,5 @@ const ReservationList = () => {
   </div>
   );
 }
- 
+
 export default ReservationList;

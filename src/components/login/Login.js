@@ -11,7 +11,6 @@ function Login() {
   const [password, setPassword] = useState('');
 
   const handleSubmit = (e) => {
-    e.preventDefault();
     const user = { email, password };
     login(user);
    navigate("/");

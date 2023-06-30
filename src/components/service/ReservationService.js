@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import jwt_decode from 'jwt-decode';
+import ReservationList from "../reservationList/ReservationList";
 
 export const getAllReservation = () => {
     const [data, setData] = useState(null);
@@ -63,4 +64,25 @@ export const assignToReservation = (reservationId) => {
             .catch(err => {
                 console.log(err.message);
             })
+}
+
+export const createReservation = (data) => {
+    const token = localStorage.getItem("token");
+    
+    fetch("http://localhost:8080/api/reservation/admin", {
+    method: "POST",
+    headers: {
+      "Authorization": `Bearer ${token}`,
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(data)
+  }) 
+    .then(response => {
+      if (!response.ok) {
+        throw new Error("Failed to create reservation");
+      }
+    })
+    .catch(error => {
+      console.log("Error creating reservation:", error);
+    });
 }

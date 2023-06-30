@@ -13,7 +13,6 @@ function Signup() {
   const [password, setPassword] = useState('');
 
   const handleSubmit = (e) => {
-    e.preventDefault();
     const user = { firstName, lastName, email, password };
     signUp(user);
     navigate("/");
