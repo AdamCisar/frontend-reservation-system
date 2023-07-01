@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from "react";
 import './ReservationList.css'; 
-import { getAllReservation } from "../service/ReservationService";
-import Admin from "../adminActions/Admin";
-import User from "../userActions/User";
+import { getMyReservation } from "../service/ReservationService";
 import jwt_decode from 'jwt-decode';
 
-const ReservationList = () => {
-  const {data, isPending, err} = getAllReservation();
+const MyReservations = () => {
+  const {data, isPending, err} = getMyReservation();
   const [reservations, setReservations] = useState([]);
   const role = jwt_decode(localStorage.getItem("token")).roles;
 
@@ -31,13 +29,10 @@ const ReservationList = () => {
         <tbody>
         {reservations && reservations.map((data, index) => (
                 <tr key={index}>
-                  <td>{formatDate(data.date)}</td>
-                  <td>{data.time}</td>
+                  <td>{formatDate(data.reservationDate)}</td>
+                  <td>{data.reservationTime}</td>
                   <td>
-                  {
-                    role.includes("ROLE_ADMIN") ? <Admin id={data.id} reservations={reservations} setReservations={setReservations}/> 
-                    : <User id={data.id} reservations={reservations} setReservations={setReservations}/>
-                  }
+                   <p>UnAssign</p>
                   </td>
                 </tr>
           ))}
@@ -49,4 +44,4 @@ const ReservationList = () => {
   );
 }
 
-export default ReservationList;
+export default MyReservations;

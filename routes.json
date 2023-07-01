@@ -1,3 +1,4 @@
 {
-    "/api/reservation": "/reservation"
+    "/api/reservation": "/reservation",
+    "/api/reservation/admin": "/reservation"
 }

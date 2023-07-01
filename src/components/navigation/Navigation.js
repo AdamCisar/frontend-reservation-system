@@ -1,12 +1,17 @@
 import React from "react";
 import './Navigation.css'
-import { Link } from 'react-router-dom';
-import ReservationPicker from "../adminActions/ReservationPicker";
+import { Link, useNavigate } from 'react-router-dom';
 import jwt_decode from 'jwt-decode';
+import ReservationPicker from '../adminActions/ReservationPicker';
 
 const Navigation = () => {
 
-    const role = jwt_decode(localStorage.getItem("token")).roles;
+    const role = localStorage.getItem("token") !== null ? jwt_decode(localStorage.getItem("token")).roles : undefined;
+
+    const handleSubmit = () => {
+        localStorage.removeItem('token');
+        useNavigate("/");
+    }
 
     return ( 
     <nav className="navbar navbar-expand-sm bg-dark navbar-dark">
@@ -21,16 +26,19 @@ const Navigation = () => {
                 {role === undefined && <Link className="nav-link" to="/login">Login</Link>}
             </li>
             <li className="nav-item">
-                <Link className="nav-link" to="/reservations">Reservations</Link>
+                {role !== undefined && <Link className="nav-link" to="/reservations">Reservations</Link>}
             </li>
             <li className="nav-item">
-                {role !== undefined && <Link className="nav-link" to="/logout">Logout</Link>}
+                {role !== undefined && role.includes("ROLE_USER") && <Link className="nav-link" to="/my-reservations">My reservations</Link>}
+            </li>
+            <li className="nav-item">
+                {role !== undefined && <Link className="nav-link logout" to="/" onClick={handleSubmit} >Logout</Link>}
             </li>
         </ul>
         </div>
         <div className="d-flex justify-content-end">
             {
-                role.includes("ROLE_ADMIN") && <ReservationPicker/>
+                role !== undefined && role.includes("ROLE_ADMIN") && <ReservationPicker/>
             }
         </div>
     </div>

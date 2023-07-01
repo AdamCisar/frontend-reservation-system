@@ -3,24 +3,68 @@
     {
       "id": 2,
       "date": "2023-06-14",
-      "time": "11:30 AM"
+      "time": "11:30"
     },
     {
       "id": 4,
       "date": "2023-06-16",
-      "time": "5:15 PM"
+      "time": "5:15"
     },
     {
       "id": 6,
       "date": "2023-06-18",
-      "time": "12:30 PM"
+      "time": "12:30"
     },
     {
       "id": 7,
       "date": "2023-06-18",
-      "time": "12:30 PM"
+      "time": "12:30"
+    },
+    {
+      "id": 8,
+      "reservationDate": "2023-06-27",
+      "reservationTime": "08:00:00"
+    },
+    {
+      "reservationDate": "2023-07-04",
+      "reservationTime": "11:00:00",
+      "id": 9
+    },
+    {
+      "reservationDate": "2023-06-27",
+      "reservationTime": "10:30:00",
+      "id": 10
+    },
+    {
+      "reservationDate": "2023-06-26",
+      "reservationTime": "10:30:00",
+      "id": 11
+    },
+    {
+      "reservationDate": "2023-07-04",
+      "reservationTime": "12:30:00",
+      "id": 12
+    },
+    {
+      "reservationDate": "2023-07-04",
+      "reservationTime": "12:30:00",
+      "id": 13
+    },
+    {
+      "reservationDate": "2023-07-05",
+      "reservationTime": "10:00:00",
+      "id": 14
+    },
+    {
+      "reservationDate": "2023-07-04",
+      "reservationTime": "10:30:00",
+      "id": 15
+    },
+    {
+      "reservationDate": "2023-07-04",
+      "reservationTime": "19:00:00",
+      "id": 16
     }
-    
   ],
   "user": [
     {

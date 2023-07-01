@@ -12,7 +12,7 @@ function Signup() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleSubmit = (e) => {
+  const handleSubmit = () => {
     const user = { firstName, lastName, email, password };
     signUp(user);
     navigate("/");

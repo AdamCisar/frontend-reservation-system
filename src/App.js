@@ -6,6 +6,7 @@ import Login from "./components/login/Login";
 import Signup from "./components/signup/Signup";
 import ReservationList from "./components/reservationList/ReservationList";
 import Home from "./components/home/Home";
+import MyReservations from "./components/reservationList/MyReservations";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Route path="signup" element={<Signup />} />
           <Route path="login"  element={<Login />} />
           <Route path="reservations"  element={<ReservationList />} />
+          <Route path="my-reservations"  element={<MyReservations />} />
       </Routes>
     </BrowserRouter>
   );

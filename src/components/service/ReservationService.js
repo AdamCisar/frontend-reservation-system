@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import jwt_decode from 'jwt-decode';
-import ReservationList from "../reservationList/ReservationList";
 
 export const getAllReservation = () => {
     const [data, setData] = useState(null);
@@ -85,4 +84,38 @@ export const createReservation = (data) => {
     .catch(error => {
       console.log("Error creating reservation:", error);
     });
+}
+
+export const getMyReservation = () => {
+    const [data, setData] = useState(null);
+    const [isPending, setIsPending] = useState(true);
+    const [err, setErr] = useState();
+    
+    const token = localStorage.getItem("token");
+    const userId = jwt_decode(token).id;
+    
+    useEffect(() => {
+        fetch(`http://localhost:8080/api/reservation/user-reservations/${userId}`, {
+            method: "GET",
+            headers: {
+                "Authorization": `Bearer ${token}`,
+                "Content-Type": 'application/json'
+            }
+            })
+            .then(res => {
+                if(!res.ok){
+                    throw Error("Couldn't fetch the data!");
+                }
+                return res.json();
+            })
+            .then(data => {
+                setData(data);
+                setIsPending(false);
+            })
+            .catch(err => {
+                setErr(err.message);
+                setIsPending(false);
+            })
+    }, [])
+    return {data, isPending, err};
 }

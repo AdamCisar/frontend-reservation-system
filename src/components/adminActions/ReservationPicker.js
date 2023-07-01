@@ -28,7 +28,7 @@ const ReservationPicker = () => {
         hour12: false
       });
     const reservation = {reservationDate, reservationTime};
-    createReservation(reservation)
+    createReservation(reservation);
     setShowModal(false);
     
   };
