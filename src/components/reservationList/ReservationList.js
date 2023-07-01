@@ -1,51 +1,46 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import './ReservationList.css'; 
 import { getAllReservation } from "../service/ReservationService";
-import Admin from "../adminActions/Admin";
-import User from "../userActions/User";
 import jwt_decode from 'jwt-decode';
+import ModalDay from "./ModalDay";
 
 const ReservationList = () => {
+
+  const days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
+  const [showModal, setShowModal] = useState(false);
+
   const {data, isPending, err} = getAllReservation();
   const [reservations, setReservations] = useState([]);
   const role = jwt_decode(localStorage.getItem("token")).roles;
 
-  useEffect(() => {
-    setReservations(data);
-  }, [data]);
-  
-  const formatDate = (dateString) => {
-    const options = { year: "numeric", month: "long", day: "numeric"}
-    return new Date(dateString).toLocaleDateString(undefined, options)
-  }
     return ( 
-    <div className = "reservation-container">
-      <table className ="table table-dark table-hover">
-        <thead>
-          <tr>
-            <th scope="col">Date</th>
-            <th scope="col">Time</th>
-            <th scope="col"></th>
-          </tr>
-        </thead>
-        <tbody>
-        {reservations && reservations.map((data, index) => (
-                <tr key={index}>
-                  <td>{formatDate(data.date)}</td>
-                  <td>{data.time}</td>
-                  <td>
-                  {
-                    role.includes("ROLE_ADMIN") ? <Admin id={data.id} reservations={reservations} setReservations={setReservations}/> 
-                    : <User id={data.id} reservations={reservations} setReservations={setReservations}/>
-                  }
-                  </td>
-                </tr>
-          ))}
-          </tbody>
-      </table>
-      {isPending && <div>Loading...</div>}
-      {err && <div><p>{err}</p></div>}
-  </div>
+
+      <div className="body">
+        {days.map((day, index) => (
+          <div className="container" key={index}>
+            <div className="card">
+              <div className="face face1" onClick={() => setShowModal(index)}>
+                <div className="content">
+                  <h3>{day}</h3>
+                </div>
+              </div>
+              {showModal === index && (
+                <div className="modal">
+                  <ModalDay 
+                    day={day}
+                    data={data}
+                    isPending={isPending}
+                    err={err}
+                    reservations={reservations}
+                    role={role}
+                    setReservations={setReservations}/>
+                </div>
+              )}
+            </div>
+          </div>
+        ))}
+      </div>
+    
   );
 }
 

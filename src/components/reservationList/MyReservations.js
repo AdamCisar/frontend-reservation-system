@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from "react";
 import './ReservationList.css'; 
 import { getMyReservation } from "../service/ReservationService";
-import jwt_decode from 'jwt-decode';
 
 const MyReservations = () => {
   const {data, isPending, err} = getMyReservation();
   const [reservations, setReservations] = useState([]);
-  const role = jwt_decode(localStorage.getItem("token")).roles;
 
   useEffect(() => {
     setReservations(data);
@@ -30,7 +28,7 @@ const MyReservations = () => {
         {reservations && reservations.map((data, index) => (
                 <tr key={index}>
                   <td>{formatDate(data.reservationDate)}</td>
-                  <td>{data.reservationTime}</td>
+                  <td>{`${data.reservationTime[0]}:${data.reservationTime[1].toString().padStart(2, '0')}`}</td>
                   <td>
                    <p>UnAssign</p>
                   </td>

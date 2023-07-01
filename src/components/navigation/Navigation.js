@@ -3,6 +3,7 @@ import './Navigation.css'
 import { Link, useNavigate } from 'react-router-dom';
 import jwt_decode from 'jwt-decode';
 import ReservationPicker from '../adminActions/ReservationPicker';
+import CreateReservations from "../adminActions/CreateReservations";
 
 const Navigation = () => {
 
@@ -35,6 +36,11 @@ const Navigation = () => {
                 {role !== undefined && <Link className="nav-link logout" to="/" onClick={handleSubmit} >Logout</Link>}
             </li>
         </ul>
+        </div>
+        <div className="d-flex justify-content-end">
+            {
+                role !== undefined && role.includes("ROLE_ADMIN") && <CreateReservations/>
+            }
         </div>
         <div className="d-flex justify-content-end">
             {

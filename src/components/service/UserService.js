@@ -6,7 +6,8 @@ export const signUp = (user) => {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(user),
-      }).then(response => response.json()) 
+      })
+      .then(response => response.json()) 
       .then(data => {
         const token = data.token;
         localStorage.setItem("token", token); 

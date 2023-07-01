@@ -86,6 +86,27 @@ export const createReservation = (data) => {
     });
 }
 
+export const createReservations = (data) => {
+    const token = localStorage.getItem("token");
+    
+    fetch("http://localhost:8080/api/reservation/admin/create-reservations", {
+    method: "POST",
+    headers: {
+      "Authorization": `Bearer ${token}`,
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(data)
+  }) 
+    .then(response => {
+      if (!response.ok) {
+        throw new Error("Failed to create reservation");
+      }
+    })
+    .catch(error => {
+      console.log("Error creating reservation:", error);
+    });
+}
+
 export const getMyReservation = () => {
     const [data, setData] = useState(null);
     const [isPending, setIsPending] = useState(true);
