@@ -1,28 +1,8 @@
 {
   "reservation": [
     {
-      "id": 2,
-      "date": "2023-06-14",
-      "time": "11:30"
-    },
-    {
-      "id": 4,
-      "date": "2023-06-16",
-      "time": "5:15"
-    },
-    {
-      "id": 6,
-      "date": "2023-06-18",
-      "time": "12:30"
-    },
-    {
-      "id": 7,
-      "date": "2023-06-18",
-      "time": "12:30"
-    },
-    {
       "id": 8,
-      "reservationDate": "2023-06-27",
+      "reservationDate": "2023-07-03",
       "reservationTime": "08:00:00"
     },
     {
@@ -31,7 +11,7 @@
       "id": 9
     },
     {
-      "reservationDate": "2023-06-27",
+      "reservationDate": "2023-07-07",
       "reservationTime": "10:30:00",
       "id": 10
     },
@@ -64,6 +44,11 @@
       "reservationDate": "2023-07-04",
       "reservationTime": "19:00:00",
       "id": 16
+    },
+    {
+      "reservationDate": "2023-07-05",
+      "reservationTime": "15:30:00",
+      "id": 17
     }
   ],
   "user": [

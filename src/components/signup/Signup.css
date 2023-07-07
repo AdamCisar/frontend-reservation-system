@@ -6,8 +6,11 @@
   align-items: center;
   height: 100vh; 
 }
+#head{
+  color: white;
+}
 .signup {
-  color: black;
+  color: white;
   background-color: orange;
 }
 label {

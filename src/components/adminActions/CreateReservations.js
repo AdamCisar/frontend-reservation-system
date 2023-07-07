@@ -3,6 +3,7 @@ import { Button, Modal, Form } from "react-bootstrap";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { createReservations } from "../service/ReservationService";
+import './styles.css';
 
 const CreateReservations = () => {
 
@@ -43,12 +44,12 @@ const CreateReservations = () => {
           <Modal.Body>
             <Form>
               <Form.Group>
-                <Form.Label>Date from</Form.Label>
+                <Form.Label className = "label">Date from</Form.Label>
                 <br />
                 <DatePicker selected={selectedDateFrom} onChange={handleDateChangeFrom} dateFormat="MMMM d, yyyy" className="form-control" />
               </Form.Group>
               <Form.Group>
-                <Form.Label>Date to</Form.Label>
+                <Form.Label className = "label">Date to</Form.Label>
                 <br />
                 <DatePicker selected={selectedDateTo} onChange={handleDateChangeTo} dateFormat="MMMM d, yyyy" className="form-control" />
               </Form.Group>

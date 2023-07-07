@@ -21,7 +21,7 @@ function Signup() {
   return (
     <div className="register-form">
       <form onSubmit= { handleSubmit }>
-          <h3>Sign Up</h3>
+          <h3 id='head'>Sign Up</h3>
           <div className="mb-3">
             <label>First name</label>
             <input

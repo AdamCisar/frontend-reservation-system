@@ -65,6 +65,22 @@ export const assignToReservation = (reservationId) => {
             })
 }
 
+export const unAssignFromReservation = (id) => {
+    const token = localStorage.getItem("token");
+    const userId = jwt_decode(token).id;
+
+    fetch(`http://localhost:8080/api/reservation/${id}/delete-user/${userId}`, {
+            method: "PATCH",
+            headers: {
+                "Authorization": `Bearer ${token}`,
+                "Content-Type": 'application/json'
+            }
+            })
+            .catch(err => {
+                console.log(err.message);
+            })    
+}
+
 export const createReservation = (data) => {
     const token = localStorage.getItem("token");
     

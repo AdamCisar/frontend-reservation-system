@@ -19,7 +19,7 @@ function Login() {
     return (
       <div className="register-form">
         <form onSubmit = {handleSubmit}>
-            <h3>Login</h3>
+            <h3 id="login" >Login</h3>
             <div className="mb-3">
               <label>Email address</label>
               <input

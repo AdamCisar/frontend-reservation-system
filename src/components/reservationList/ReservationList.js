@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect , useState } from "react";
 import './ReservationList.css'; 
 import { getAllReservation } from "../service/ReservationService";
 import jwt_decode from 'jwt-decode';
@@ -12,6 +12,10 @@ const ReservationList = () => {
   const {data, isPending, err} = getAllReservation();
   const [reservations, setReservations] = useState([]);
   const role = jwt_decode(localStorage.getItem("token")).roles;
+
+  useEffect(() => {
+    setReservations(data);
+  }, [data]);
 
     return ( 
 
@@ -28,7 +32,6 @@ const ReservationList = () => {
                 <div className="modal">
                   <ModalDay 
                     day={day}
-                    data={data}
                     isPending={isPending}
                     err={err}
                     reservations={reservations}
