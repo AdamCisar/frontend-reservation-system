@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import './Login.css'
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { login } from "../service/UserService";
 
 function Login() {
@@ -17,35 +17,32 @@ function Login() {
   };
 
     return (
-      <div className="register-form">
+      <div className="login-form">
         <form onSubmit = {handleSubmit}>
-            <h3 id="login" >Login</h3>
+            <h3 id="login" >LOGIN</h3>
             <div className="mb-3">
-              <label>Email address</label>
               <input
                 type="email"
                 className="form-control"
-                placeholder="Enter email"
+                placeholder="  email"
                 onChange={e => setEmail(e.target.value)}
+                required
               />
             </div>
             <div className="mb-3">
-              <label>Password</label>
               <input
                 type="password"
                 className="form-control"
-                placeholder="Enter password"
+                placeholder="  password"
                 onChange={e => setPassword(e.target.value)}
+                required
               />
             </div>
             <div className="d-grid">
               <button type="submit" className="btn btn-dark">
-                Login
+                <span>LOG IN</span>
               </button>
             </div>
-            <p className="badge badge-light">
-              Don't have an account <Link className="login" to="/signup">sign up?</Link>
-            </p>
           </form>
         </div>
     );

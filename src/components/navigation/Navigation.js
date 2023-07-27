@@ -17,14 +17,14 @@ const Navigation = () => {
     return ( 
     <nav className="navbar navbar-expand-sm bg-dark navbar-dark">
     <div className="container-fluid">
-            <Link className="navbar-brand" to="/">Home</Link>
+            <Link className="navbar-brand" to="/">HOME</Link>
         <div className="collapse navbar-collapse" id="collapsibleNavbar">
         <ul className="navbar-nav">
             <li className="nav-item">
-                {role === undefined && <Link className="nav-link" to="/signup">Signup</Link>}
+                {role === undefined && <Link className="nav-link" to="/signup">SIGNUP</Link>}
             </li>
             <li className="nav-item">
-                {role === undefined && <Link className="nav-link" to="/login">Login</Link>}
+                {role === undefined && <Link className="nav-link" to="/login">LOGIN</Link>}
             </li>
             <li className="nav-item">
                 {role !== undefined && <Link className="nav-link" to="/reservations">Reservations</Link>}

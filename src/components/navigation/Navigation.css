@@ -1,3 +1,45 @@
-.logout {
-    color: #d9534f !important;
+.navbar {
+  background-color: #333;
+  padding: 10px;
+}
+
+.navbar-brand {
+  color: #fff;
+  font-size: 22px;
+  text-decoration: none;
+  padding: 8px 15px;
+  font-family: "brandon-grotesque",sans-serif;
+  font-weight: bold;
+}
+
+.nav-item {
+  padding: 8px 15px;
+}
+
+.nav-item a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 18px;
+  transition: color 0.3s ease;
+  font-family: "brandon-grotesque",sans-serif;
+  font-weight: bold;
+}
+
+.nav-item a:hover {
+  color: #ff5500;
+}
+
+.nav-item.logout {
+  cursor: pointer;
+}
+
+/* Media Query for Responsive Styles */
+@media screen and (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+  }
+
+  .nav-item {
+    padding: 5px;
+  }
 }

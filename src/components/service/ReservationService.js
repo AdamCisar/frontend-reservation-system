@@ -8,7 +8,6 @@ export const getAllReservation = () => {
     
     const token = localStorage.getItem("token");
     
-    useEffect(() => {
         fetch("http://localhost:8080/api/reservation", {
             method: "GET",
             headers: {
@@ -30,9 +29,7 @@ export const getAllReservation = () => {
                 setErr(err.message);
                 setIsPending(false);
             })
-    }, [])
     return {data, isPending, err};
-    
 }
 
 export const deleteReservation = (id) => {
@@ -94,11 +91,11 @@ export const createReservation = (data) => {
   }) 
     .then(response => {
       if (!response.ok) {
-        throw new Error("Failed to create reservation");
+        console.log(response);
       }
     })
     .catch(error => {
-      console.log("Error creating reservation:", error);
+      console.log(error.response);
     });
 }
 
