@@ -20,21 +20,11 @@ const Navigation = () => {
             <Link className="navbar-brand" to="/">HOME</Link>
         <div className="collapse navbar-collapse" id="collapsibleNavbar">
         <ul className="navbar-nav">
-            <li className="nav-item">
-                {role === undefined && <Link className="nav-link" to="/signup">SIGNUP</Link>}
-            </li>
-            <li className="nav-item">
-                {role === undefined && <Link className="nav-link" to="/login">LOGIN</Link>}
-            </li>
-            <li className="nav-item">
-                {role !== undefined && <Link className="nav-link" to="/reservations">Reservations</Link>}
-            </li>
-            <li className="nav-item">
-                {role !== undefined && role.includes("ROLE_USER") && <Link className="nav-link" to="/my-reservations">My reservations</Link>}
-            </li>
-            <li className="nav-item">
-                {role !== undefined && <Link className="nav-link logout" to="/" onClick={handleSubmit} >Logout</Link>}
-            </li>
+                {role === undefined && <li className="nav-item"><Link className="nav-link" to="/signup">SIGNUP</Link></li>}
+                {role === undefined && <li className="nav-item"> <Link className="nav-link" to="/login">LOGIN</Link> </li>}
+                {role !== undefined && <li className="nav-item"> <Link className="nav-link" to="/reservations">RESERVATIONS</Link></li>}
+                {role !== undefined && role.includes("ROLE_USER") && <li className="nav-item"> <Link className="nav-link" to="/my-reservations">MY RESERVATIONS</Link></li>}
+                {role !== undefined && <li className="nav-item"><Link className="nav-link logout" to="/" onClick={handleSubmit} >LOGOUT</Link></li>}
         </ul>
         </div>
         <div className="d-flex justify-content-end">

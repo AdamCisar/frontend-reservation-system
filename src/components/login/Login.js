@@ -13,7 +13,7 @@ function Login() {
   const handleSubmit = (e) => {
     const user = { email, password };
     login(user);
-   navigate("/");
+    navigate("/");
   };
 
     return (

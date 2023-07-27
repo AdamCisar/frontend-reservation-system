@@ -53,7 +53,7 @@ const ModalDay = (props) => {
                             }
                             </td>
                             </tr>
-                    ))}
+                    )) === null ? "no reservations" : reservations}
                     </tbody>
                 </table>
                 {isPending && <div>Loading...</div>}

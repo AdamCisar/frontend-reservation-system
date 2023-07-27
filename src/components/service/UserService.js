@@ -1,6 +1,6 @@
-export const signUp = (user) => {
+export const signUp = async (user) => {
 
-    fetch("http://localhost:8080/api/register", {
+  await fetch("http://localhost:8080/api/register", {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -17,8 +17,8 @@ export const signUp = (user) => {
       });
 }
 
-export const login = (user) => {
-  fetch("http://localhost:8080/api/login", {
+export const login = async (user) => {
+  await fetch("http://localhost:8080/api/login", {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
