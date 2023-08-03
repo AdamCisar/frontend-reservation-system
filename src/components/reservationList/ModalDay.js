@@ -5,7 +5,8 @@ import User from "../userActions/User";
 
 const ModalDay = (props) => {
 
-    const { reservations, role, day } = props;
+    const { role, day } = props;
+    const [reservations, setReservations] = useState(props.reservations); 
     const [showModal, setShowModal] = useState(true);
     const [today, setToday] = useState();
 
@@ -53,9 +54,9 @@ const ModalDay = (props) => {
                                   <td>{`${data.time[0]}:${data.time[1].toString().padStart(2, '0')}`}</td>
                                   <td>
                                     {role !== undefined && role.includes("ROLE_ADMIN") ? (
-                                      <Admin id={data.id} reservations={reservations} /> 
+                                      <Admin id={data.id} reservations={reservations} setReservations={setReservations} /> 
                                     ) : (
-                                      <User id={data.id} reservations={reservations} />
+                                      <User id={data.id} reservations={reservations} setReservations={setReservations}/>
                                     )}
                                   </td>
                                 </tr>
