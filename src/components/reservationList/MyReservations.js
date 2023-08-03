@@ -3,7 +3,7 @@ import './ReservationList.css';
 import {  unAssignFromReservation , getMyReservation,  } from "../service/ReservationService";
 
 const MyReservations = () => {
-  const {data, isPending, err} = getMyReservation();
+  const {data} = getMyReservation();
   const [reservations, setReservations] = useState([]);
 
   useEffect(() => {
