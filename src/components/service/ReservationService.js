@@ -2,7 +2,9 @@ import jwt_decode from 'jwt-decode';
 import axios from 'axios';
 import React, {  useState } from "react";
 
-const API_URL = 'http://localhost:8080/api/reservation';
+// const API_URL = 'http://localhost:8080/api/reservation';
+const API_URL = 'https://backend-reservation-31b4.onrender.com/api/reservation';
+
 const token = localStorage.getItem("token");
 
 export const getNotOccupiedReservations = async () => {
@@ -23,7 +25,7 @@ export const getNotOccupiedReservations = async () => {
 
 export const deleteReservation = (id) => {
     const token = localStorage.getItem("token");
-    fetch("http://localhost:8080/api/reservation/admin/"+id, {
+    fetch(`${API_URL}/admin/`+id, {
             method: "DELETE",
             headers: {
                 "Authorization": `Bearer ${token}`,
@@ -39,7 +41,7 @@ export const assignToReservation = (reservationId) => {
     const token = localStorage.getItem("token");
     const userId = jwt_decode(token).id;
 
-    fetch(`http://localhost:8080/api/reservation/${reservationId}/update-user/${userId}`, {
+    fetch(`${API_URL}/${reservationId}/update-user/${userId}`, {
             method: "PATCH",
             headers: {
                 "Authorization": `Bearer ${token}`,
@@ -55,7 +57,7 @@ export const unAssignFromReservation = (id) => {
     const token = localStorage.getItem("token");
     const userId = jwt_decode(token).id;
 
-    fetch(`http://localhost:8080/api/reservation/${id}/delete-user/${userId}`, {
+    fetch(`${API_URL}/${id}/delete-user/${userId}`, {
             method: "PATCH",
             headers: {
                 "Authorization": `Bearer ${token}`,
@@ -70,7 +72,7 @@ export const unAssignFromReservation = (id) => {
 export const createReservation = (data) => {
     const token = localStorage.getItem("token");
     
-    fetch("http://localhost:8080/api/reservation/admin", {
+    fetch(`${API_URL}/admin`, {
     method: "POST",
     headers: {
       "Authorization": `Bearer ${token}`,
@@ -91,7 +93,7 @@ export const createReservation = (data) => {
 export const createReservations = (data) => {
     const token = localStorage.getItem("token");
     
-    fetch("http://localhost:8080/api/reservation/admin/create-reservations", {
+    fetch(`${API_URL}/admin/create-reservations`, {
     method: "POST",
     headers: {
       "Authorization": `Bearer ${token}`,
@@ -117,7 +119,7 @@ export const getMyReservation = () => {
     const token = localStorage.getItem("token");
     const userId = jwt_decode(token).id;
     
-        fetch(`http://localhost:8080/api/reservation/user-reservations/${userId}`, {
+        fetch(`${API_URL}/user-reservations/${userId}`, {
             method: "GET",
             headers: {
                 "Authorization": `Bearer ${token}`,
