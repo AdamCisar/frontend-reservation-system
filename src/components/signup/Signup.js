@@ -3,6 +3,7 @@ import './Signup.css';
 import { signUp } from '../service/UserService';
 import { useNavigate } from 'react-router-dom';
 
+
 function Signup() {
 
   const navigate = useNavigate();
@@ -12,10 +13,17 @@ function Signup() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleSubmit = () => {
-    const user = { firstName, lastName, email, password };
-    signUp(user);
-    navigate("/");
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await signUp(firstName, lastName, email, password);
+      const token = response.data.token;
+      localStorage.setItem('token', token);
+      navigate('/');
+      window.location.reload();
+    } catch (error) {
+      console.error('Error while logging in:', error);
+    }
   };
 
   return (

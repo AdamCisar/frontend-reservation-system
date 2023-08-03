@@ -1,36 +1,9 @@
-export const signUp = async (user) => {
+import axios from 'axios';
 
-  await fetch("http://localhost:8080/api/register", {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(user),
-      })
-      .then(response => response.json()) 
-      .then(data => {
-        const token = data.token;
-        localStorage.setItem("token", token); 
-      })
-      .catch(error => {
-        console.error('Registration failed:', error);
-      });
-}
+export const signUp =  (firstName, lastName, email, password) => {
+  return axios.post("http://localhost:8080/api/register", { firstName, lastName, email, password })
+};
 
-export const login = async (user) => {
-  await fetch("http://localhost:8080/api/login", {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(user),
-  })
-    .then(response => response.json()) 
-    .then(data => {
-      const token = data.token;
-      localStorage.setItem("token", token); 
-    })
-    .catch(error => {
-      console.error('Login failed:', error);
-    });
-}
+export const login = (email, password) => {
+  return axios.post("http://localhost:8080/api/login", { email, password })
+};

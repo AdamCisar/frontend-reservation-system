@@ -1,12 +1,17 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Modal } from "react-bootstrap";
 import Admin from "../adminActions/Admin";
 import User from "../userActions/User";
 
 const ModalDay = (props) => {
 
-    const { isPending, reservations, err, role, setReservations, day } = props;
+    const { reservations, role, day } = props;
     const [showModal, setShowModal] = useState(true);
+    const [today, setToday] = useState();
+
+    useEffect(() => {
+      setToday(getToday(reservations));
+    }, []);
 
     const formatDate = (dateString) => {
         const options = { year: "numeric", month: "long", day: "numeric"}
@@ -20,7 +25,6 @@ const ModalDay = (props) => {
       })
       return reservation !== undefined ? formatDate(reservation.date) : " - No reservations!";
     }
-    const today = getToday(reservations);
     
     return ( 
         <div>
@@ -39,25 +43,26 @@ const ModalDay = (props) => {
                     </tr>
                     </thead>
                     <tbody>
-                    {reservations && reservations.filter((reservation) => {
-                            const reservationDay = new Date(reservation.date).toLocaleDateString("en-US", { weekday: "long" });
-                            return reservationDay === day;
-                        })
-                        .map((data, index) => (
-                            <tr key={index}>
-                            <td>{`${data.time[0]}:${data.time[1].toString().padStart(2, '0')}`}</td>
-                            <td>
-                            {
-                               role !== undefined && role.includes("ROLE_ADMIN") ? <Admin id={data.id} reservations={reservations} setReservations={setReservations}/> 
-                                : <User id={data.id} reservations={reservations} setReservations={setReservations}/>
-                            }
-                            </td>
-                            </tr>
-                    )) === null ? "no reservations" : reservations}
+                    {reservations.length === 0 ? (
+                              <tr>
+                                <td colSpan="2">No reservations</td>
+                              </tr>
+                            ) : (
+                              reservations.map((data, index) => (
+                                <tr key={index}>
+                                  <td>{`${data.time[0]}:${data.time[1].toString().padStart(2, '0')}`}</td>
+                                  <td>
+                                    {role !== undefined && role.includes("ROLE_ADMIN") ? (
+                                      <Admin id={data.id} reservations={reservations} /> 
+                                    ) : (
+                                      <User id={data.id} reservations={reservations} />
+                                    )}
+                                  </td>
+                                </tr>
+                              ))
+                            )}
                     </tbody>
                 </table>
-                {isPending && <div>Loading...</div>}
-                {err && <div><p>{err}</p></div>}
             </div>
           </Modal.Body>
           <Modal.Footer>

@@ -10,10 +10,17 @@ function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleSubmit = (e) => {
-    const user = { email, password };
-    login(user);
-    navigate("/");
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await login(email, password);
+      const token = response.data.token;
+      localStorage.setItem('token', token);
+      navigate('/');
+      window.location.reload();
+    } catch (error) {
+      console.error('Error while logging in:', error);
+    }
   };
 
     return (

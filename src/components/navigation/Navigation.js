@@ -24,7 +24,7 @@ const Navigation = () => {
                 {role === undefined && <li className="nav-item"> <Link className="nav-link" to="/login">LOGIN</Link> </li>}
                 {role !== undefined && <li className="nav-item"> <Link className="nav-link" to="/reservations">RESERVATIONS</Link></li>}
                 {role !== undefined && role.includes("ROLE_USER") && <li className="nav-item"> <Link className="nav-link" to="/my-reservations">MY RESERVATIONS</Link></li>}
-                {role !== undefined && <li className="nav-item"><Link className="nav-link logout" to="/" onClick={handleSubmit} >LOGOUT</Link></li>}
+                {role !== undefined && <li className="nav-item logout"><Link className="nav-link logout" to="/" onClick={handleSubmit} >LOGOUT</Link></li>}
         </ul>
         </div>
         <div className="d-flex justify-content-end">

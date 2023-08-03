@@ -16,6 +16,10 @@
   padding: 8px 15px;
 }
 
+.nav-item.logout a:hover {
+    color: red;
+}
+
 .nav-item a {
   color: #fff;
   text-decoration: none;

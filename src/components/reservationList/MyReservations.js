@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import './ReservationList.css'; 
-import {  unAssignFromReservation , getMyReservation } from "../service/ReservationService";
+import {  unAssignFromReservation , getMyReservation,  } from "../service/ReservationService";
 
 const MyReservations = () => {
   const {data, isPending, err} = getMyReservation();
@@ -9,6 +9,10 @@ const MyReservations = () => {
   useEffect(() => {
     setReservations(data);
   }, [data]);
+
+  useEffect(() => {
+   setReservations(data);
+  }, []);
 
   const handleUnAssign = (id) => {
     unAssignFromReservation(id);
@@ -42,8 +46,6 @@ const MyReservations = () => {
           ))}
           </tbody>
       </table>
-      {isPending && <div>Loading...</div>}
-      {err && <div><p>{err}</p></div>}
   </div>
   );
 }

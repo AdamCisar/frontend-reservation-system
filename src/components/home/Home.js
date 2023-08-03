@@ -4,7 +4,10 @@ import "./home.css";
 function Home() {
 
   return (
-    <div> Home </div>
+    <div> 
+      <h1> Welcome to reservation system 
+        </h1> 
+    </div>
   );
 }
 

@@ -1,36 +1,25 @@
-import { useEffect, useState } from "react";
 import jwt_decode from 'jwt-decode';
+import axios from 'axios';
+import React, {  useState } from "react";
 
-export const getAllReservation = () => {
-    const [data, setData] = useState(null);
-    const [isPending, setIsPending] = useState(true);
-    const [err, setErr] = useState();
-    
-    const token = localStorage.getItem("token");
-    
-        fetch("http://localhost:8080/api/reservation", {
-            method: "GET",
-            headers: {
-                "Authorization": `Bearer ${token}`,
-                "Content-Type": 'application/json'
-            }
-            })
-            .then(res => {
-                if(!res.ok){
-                    throw Error("Couldn't fetch the data!");
-                }
-                return res.json();
-            })
-            .then(data => {
-                setData(data);
-                setIsPending(false);
-            })
-            .catch(err => {
-                setErr(err.message);
-                setIsPending(false);
-            })
-    return {data, isPending, err};
-}
+const API_URL = 'http://localhost:8080/api/reservation';
+const token = localStorage.getItem("token");
+
+export const getNotOccupiedReservations = async () => {
+         try {
+           const response = await axios.get(API_URL, {
+                    headers: {
+                      Authorization: `Bearer ${token}`,
+                    },
+                  });
+
+              return response.data;
+
+         } catch (error) {
+           console.error('Error fetching data:', error);
+           return [];
+         }
+       };
 
 export const deleteReservation = (id) => {
     const token = localStorage.getItem("token");
@@ -128,7 +117,6 @@ export const getMyReservation = () => {
     const token = localStorage.getItem("token");
     const userId = jwt_decode(token).id;
     
-    useEffect(() => {
         fetch(`http://localhost:8080/api/reservation/user-reservations/${userId}`, {
             method: "GET",
             headers: {
@@ -150,6 +138,5 @@ export const getMyReservation = () => {
                 setErr(err.message);
                 setIsPending(false);
             })
-    }, [])
     return {data, isPending, err};
 }
