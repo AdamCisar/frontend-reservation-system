@@ -12,8 +12,19 @@
   font-weight: bold;
 }
 
+.container-fluid {
+  height: 60px;
+}
+
 .nav-item {
   padding: 8px 15px;
+  display: flex;
+  align-items: center;
+}
+
+.login,
+.signup {
+  margin-top: 0; 
 }
 
 .nav-item.logout a:hover {
@@ -39,11 +50,17 @@
 
 /* Media Query for Responsive Styles */
 @media screen and (max-width: 768px) {
+  
+  .container-fluid {
+    height: auto;
+  }
+
   .navbar {
     flex-direction: column;
   }
 
   .nav-item {
     padding: 5px;
+    display: block;
   }
 }
