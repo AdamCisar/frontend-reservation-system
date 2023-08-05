@@ -53,6 +53,7 @@ table {
     display: flex;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
 }
 
 .container .card:hover .face.face1{
