@@ -7,11 +7,11 @@ function Home() {
     <div> 
       <h1> Welcome to reservation system 
         </h1> 
-        <p1>Still in progress...</p1>
-        <p2>Admin account 
+        <h2>Still in progress...</h2>
+        <h3>Admin account 
           email: test@test.com,
           password: test
-        </p2>
+        </h3>
     </div>
   );
 }
