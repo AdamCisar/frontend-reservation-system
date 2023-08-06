@@ -3,7 +3,7 @@ import axios from 'axios';
 import {  useState } from "react";
 
 // const API_URL = 'http://localhost:8080/api/reservation';
-const API_URL = 'https://backend-reservation-31b4.onrender.com/api/reservation';
+const API_URL = 'https://spectacular-flan-e470d0.netlify.app/api/reservation';
 
 const token = localStorage.getItem("token");
 
