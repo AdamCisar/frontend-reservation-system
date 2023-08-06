@@ -1,10 +1,4 @@
 [[redirects]]
-  from = "/api/login"
-  to = "https://spectacular-flan-e470d0.netlify.app"
+  from = "/api/*"
+  to = "https://spectacular-flan-e470d0.netlify.app/:splat"
   status = 200
-  force = true
-  headers = {X-From = "Netlify"}
-[[headers]]
-  for = "/*"
-  [headers.values]
-    Access-Control-Allow-Origin = "*"
